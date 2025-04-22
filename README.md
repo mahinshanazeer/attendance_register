@@ -32,3 +32,19 @@ python -m unittest discover tests
 ```
 
 This command will automatically discover and run all tests within the `tests` directory.
+
+
+## Running with Docker
+
+You can also build and run this application using Docker.
+
+1.  **Build the Docker image:**
+    ```bash
+    docker build -t attendance-app .
+    ```
+
+2.  **Run the Docker container:**
+    ```bash
+    docker run -it --rm attendance-app
+    ```
+    This will start the application in interactive mode.
