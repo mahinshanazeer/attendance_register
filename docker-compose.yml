@@ -1,0 +1,19 @@
+version: '3.8' # Specifies the Docker Compose file format version
+
+services:
+  web:
+    build: . # Looks for a Dockerfile in the current directory to build the image
+    ports:
+      - "5000:8000" # Maps port 5000 on the host to port 8000 in the container (where Gunicorn runs)
+    volumes:
+      # Mounts the project directory on the host to /app in the container
+      # This allows for live code reloading during development if Flask's debug mode is on
+      # For Gunicorn, changes might require a restart of the container or Gunicorn workers
+      - .:/app 
+    environment:
+      # Example of setting environment variables, can be used by Flask/Gunicorn
+      # FLASK_ENV is often 'development' or 'production'
+      - FLASK_ENV=development 
+      # Ensure Gunicorn uses a configuration that reloads on code changes if desired for development
+      # For actual production, you might remove the volume mount for code and not use reload
+      # Gunicorn can be configured with --reload, but it's often managed by restarting the container in Compose
